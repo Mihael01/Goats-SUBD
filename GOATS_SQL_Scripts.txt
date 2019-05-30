@@ -48,6 +48,10 @@ INSERT INTO Sex (Code, Description) VALUES ("Ж", "Коза");
 INSERT INTO Owner (LastName, FirstName, Place) VALUES ("Пенкова", "баба Пена", "Горно Нанадолнище");
 INSERT INTO Owner (LastName, FirstName, Place) VALUES ("Гогова", "баба Дена", "Горно Нанадолнище");
 
+INSERT INTO Goat (GoatName, Sex, OwnerID) VALUES ("Сребка", "Ж", 1);
+INSERT INTO Goat (GoatName, Sex, OwnerID) VALUES ("Събка", "Ж", 1);
+
+select count(GoatName) as GoatCount, FirstName from Goat as g join Owner as o on OwnerID = o.ID where FirstName like "%Пена" group by OwnerID;
 
 
 
