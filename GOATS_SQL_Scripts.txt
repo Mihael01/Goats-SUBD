@@ -1,0 +1,55 @@
+DROP DATABASE IF EXISTS Goats;
+
+CREATE DATABASE Goats;
+USE Goats;
+
+drop table Produce;
+drop table Goat;
+drop table Owner;
+CREATE TABLE Owner (
+    ID int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Place varchar(255),    
+    PRIMARY KEY (ID)
+)DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE Goat (
+    ID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    GoatName varchar(255),
+    Sex char(1),
+    OwnerID int,
+    FOREIGN KEY (OwnerID) REFERENCES Owner(ID) ON DELETE CASCADE
+) DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE Produce (
+    ID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Liters decimal(20,2),
+    FatContentPercent decimal(20,2),
+    GoatID int NOT NULL,
+    FOREIGN KEY(GoatID) REFERENCES Goat(ID) ON DELETE CASCADE
+) DEFAULT CHARSET=utf8;
+
+CREATE TABLE Sex (
+    Code char(1) NOT NULL UNIQUE,
+    Description varchar(255)
+) DEFAULT CHARSET=utf8;
+
+
+select * from Produce;
+select * from Sex;
+
+INSERT INTO Sex (Code, Description) VALUES ("М", "Пръч");
+INSERT INTO Sex (Code, Description) VALUES ("Ж", "Коза");
+
+INSERT INTO Owner (LastName, FirstName, Place) VALUES ("Пенкова", "баба Пена", "Горно Нанадолнище");
+INSERT INTO Owner (LastName, FirstName, Place) VALUES ("Гогова", "баба Дена", "Горно Нанадолнище");
+
+
+
+
+
+
